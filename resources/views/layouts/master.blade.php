@@ -204,6 +204,9 @@
     
                     <div class="row layout-top-spacing">
 
+                        <div class="col-lg-12">
+                         @include('partials.alert-notifications')
+                        </div>
                         @yield('content')
 
                     </div>

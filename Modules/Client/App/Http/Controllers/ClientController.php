@@ -46,7 +46,7 @@ class ClientController extends Controller
         // Save the client to the database
         $client->save();
 
-        return redirect()->route('client.index');
+        return redirect()->route('client.index')->with('alertMessage', "{$client->full_name} was created.")->with('alertMessageClass', 'success');
     }
 
     /**
@@ -76,7 +76,7 @@ class ClientController extends Controller
         // Save the updated client to the database
         $client->save();
 
-        return redirect()->route('client.index');
+        return redirect()->route('client.index')->with('alertMessage', "{$client->full_name} was updated.")->with('alertMessageClass', 'success');
     }
 
     /**
@@ -84,8 +84,9 @@ class ClientController extends Controller
      */
     public function destroy(Client $client)
     {
+        $full_name = $client->full_name;
         $client->delete();
 
-        return redirect()->back();
+        return redirect()->back()->with('alertMessage', "{$full_name} was deleted.")->with('alertMessageClass', 'success');
     }
 }
