@@ -25,6 +25,7 @@ class ClientValidation extends FormRequest
             'is_organization' => 'boolean',
             'sms_notification' => 'boolean', // Remove this line
             'mail_notification' => 'boolean', // Remove this line
+            'is_organization' => 'boolean', // Remove this line
             'organization_name' => 'nullable|string|max:255',
             'address' => 'nullable|string|max:255',
             'latitude' => 'nullable|string|max:255',
@@ -60,6 +61,7 @@ class ClientValidation extends FormRequest
         $this->merge([
             'sms_notification' => $this->has('sms_notification'),
             'mail_notification' => $this->has('mail_notification'),
+            'is_organization' => !empty($this->organization_name) ? true : false
         ]);
     }
 }
