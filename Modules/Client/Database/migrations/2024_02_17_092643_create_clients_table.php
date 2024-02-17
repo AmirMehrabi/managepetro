@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('slug');
             $table->string('primary_email')->unique();
             $table->string('primary_phone')->unique();
-            $table->string('secondary_email');
-            $table->string('secondary_phone');
+            $table->string('secondary_email')->nullable();
+            $table->string('secondary_phone')->nullable();
             $table->string('password');
             $table->boolean('mail_notification')->default(0);
             $table->boolean('sms_notification')->default(0);

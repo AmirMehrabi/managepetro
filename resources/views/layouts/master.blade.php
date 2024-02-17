@@ -23,6 +23,7 @@
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
     <link rel="stylesheet" type="text/css" href="{{ asset("src/assets/css/light/elements/alert.css") }}">
     <link rel="stylesheet" type="text/css" href="{{ asset("src/assets/css/dark/elements/alert.css") }}">
+    @yield('header-assets')
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
 
 </head>
@@ -282,12 +283,8 @@
                                         <div class="page-title">
                                         </div>
                         
-                                        <nav class="breadcrumb-style-one" aria-label="breadcrumb">
-                                            <ol class="breadcrumb">
-                                                <li class="breadcrumb-item"><a href="#">Layouts</a></li>
-                                                <li class="breadcrumb-item active" aria-current="page">Full Width</li>
-                                            </ol>
-                                        </nav>
+                                        @yield('breadcrumb')
+
                         
                                     </div>
                                 </div>
@@ -357,14 +354,17 @@
     <!-- END MAIN CONTAINER -->
 
     <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
+    <script src="{{ asset('src/plugins/src/global/vendors.min.js') }}"></script>
     <script src="{{ asset("src/bootstrap/js/bootstrap.bundle.min.js") }}"></script>
     <script src="{{ asset("src/plugins/src/perfect-scrollbar/perfect-scrollbar.min.js") }}"></script>
     <script src="{{ asset("src/plugins/src/mousetrap/mousetrap.min.js") }}"></script>
     <script src="{{ asset("src/plugins/src/waves/waves.min.js") }}"></script>
-    <script src="{{ asset("src/app.js") }}"></script>
+    {{-- <script src="{{ asset("src/app.js") }}"></script> --}}
     <!-- END GLOBAL MANDATORY SCRIPTS -->
 
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+    @yield('footer-assets')
+
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 </body>
 </html>

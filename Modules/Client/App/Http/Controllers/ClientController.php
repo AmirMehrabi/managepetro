@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Client\App\Rules\ClientValidation;
+use Modules\Client\App\Models\Client;
 
 class ClientController extends Controller
 {
@@ -39,6 +40,8 @@ class ClientController extends Controller
 
         // Save the client to the database
         $client->save();
+
+        return redirect()->route('client.index');
     }
 
     /**
