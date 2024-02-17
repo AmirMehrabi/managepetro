@@ -40,13 +40,13 @@
         <header class="header navbar navbar-expand-sm expand-header">
 
             <ul class="navbar-item theme-brand flex-row  text-center">
-                <li class="nav-item theme-logo">
+                {{-- <li class="nav-item theme-logo">
                     <a href="index.html">
-                        <img src="{{ asset("src/assets/img/logo2.svg") }}" class="navbar-logo" alt="logo">
+                        <img src="{{ asset("src/assets/img/logo/logo-1.png") }}" class="navbar-logo" alt="logo">
                     </a>
-                </li>
+                </li> --}}
                 <li class="nav-item theme-text">
-                    <a href="index.html" class="nav-link"> CORK </a>
+                    <a href="index.html" class="nav-link"> Manage Petro </a>
                 </li>
             </ul>
 
@@ -359,7 +359,7 @@
     <script src="{{ asset("src/plugins/src/perfect-scrollbar/perfect-scrollbar.min.js") }}"></script>
     <script src="{{ asset("src/plugins/src/mousetrap/mousetrap.min.js") }}"></script>
     <script src="{{ asset("src/plugins/src/waves/waves.min.js") }}"></script>
-    {{-- <script src="{{ asset("src/app.js") }}"></script> --}}
+    <script src="{{ asset("src/app.js") }}"></script>
     <!-- END GLOBAL MANDATORY SCRIPTS -->
 
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->

@@ -1,5 +1,15 @@
 @extends('layouts.master')
 
+@section('breadcrumb')
+<nav class="breadcrumb-style-one" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('client.index') }}">{!! config('client.plural_name') !!}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ isset($client) ? 'Edit' : 'Create' }} {!! config('client.name') !!}</li>
+    </ol>
+</nav>
+@endsection
+
 @section('content')
     <div class="row">
 
@@ -60,8 +70,8 @@
                             @component('components.text', [
                                 'label' => 'Customer Portal Password',
                                 'placeholder' => '********',
-                                'required' => true,
                                 'name' => 'password',
+                                'required' => isset($client) ? false : true,
                                 'type' => 'password',
                                 
                             ])
@@ -152,20 +162,19 @@
                             <div class="row mb-3">
 
                                 <label class="col-sm-2 col-form-label">Notification Settings</label>
-    
                                 @component('components.checkbox', [
                                     'label' => 'Email Notification',
-                                    'name' => 'default_checkbox',
+                                    'name' => 'mail_notification',
                                     'id' => 'flexSwitchCheckDefault',
-                                    'checked' => isset($client) ? $client->sms_notification : false,
+                                    'checked' => isset($client) ? $client->mail_notification : old('mail_notification'),
                                 ])
                                 @endcomponent
     
                                 @component('components.checkbox', [
                                     'label' => 'SMS Notification',
-                                    'name' => 'default_checkbox',
+                                    'name' => 'sms_notification',
                                     'id' => 'flexSwitchCheckDefault',
-                                    'checked' => isset($client) ? $client->sms_notification : false,
+                                    'checked' => isset($client) ? $client->sms_notification : old('sms_notification'),
                                 ])
                                 @endcomponent
                             </div>

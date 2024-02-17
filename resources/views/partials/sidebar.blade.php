@@ -2,12 +2,12 @@
     <div class="nav-logo">
         <div class="nav-item theme-logo">
             <a href="./index.html">
-                <img src="{{ asset("src/assets/img/logo.svg") }}" class="navbar-logo" alt="logo">
+                <img src="{{ asset("src/assets/img/logo/logo-1.png") }}" class="navbar-logo" alt="logo">
             </a>
         </div>
-        <div class="nav-item theme-text">
+        {{-- <div class="nav-item theme-text">
             <a href="./index.html" class="nav-link"> CORK </a>
-        </div>
+        </div> --}}
     </div>
     <div class="nav-item sidebar-toggle">
         <div class="btn-toggle sidebarCollapse">

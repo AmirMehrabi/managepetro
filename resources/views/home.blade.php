@@ -1,5 +1,11 @@
 @extends('layouts.master')
-
+@section('breadcrumb')
+<nav class="breadcrumb-style-one" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
+    </ol>
+</nav>
+@endsection
 
 @section('content')
     

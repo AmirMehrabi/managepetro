@@ -16,7 +16,12 @@ class ClientController extends Controller
      */
     public function index()
     {
-        return view('client::index');
+
+        // Retrieve all clients from the database, didn't paginate because it's for demo purposes
+        $clients = Client::all();
+
+        // Return a view with the clients data
+        return view('client::index', compact('clients'));
     }
 
     /**
@@ -24,7 +29,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        return view('client::create');
+        return view('client::form');
     }
 
     /**
@@ -47,28 +52,31 @@ class ClientController extends Controller
     /**
      * Show the specified resource.
      */
-    public function show($id)
+    public function show(Client $client)
     {
-        return view('client::show');
+        return view('client::show', compact('client'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit(Client $client)
     {
-        return view('client::edit');
+        return view('client::form', compact('client'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id): RedirectResponse
+    public function update(ClientValidation $request, Client $client): RedirectResponse
     {
+
         $client->fill($request->validated());
 
         // Save the updated client to the database
         $client->save();
+
+        return redirect()->route('client.index');
     }
 
     /**

@@ -15,8 +15,8 @@ window.addEventListener("load", function(){
                 darkMode: false,
                 boxed: false,
                 logo: {
-                    darkLogo: '../src/assets/img/logo.svg',
-                    lightLogo: '../src/assets/img/logo.svg'
+                    darkLogo: '../../src/assets/img/logo/logo-1.png',
+                    lightLogo: '../../src/assets/img/logo/logo-1.png'
                 }
             }
         },
@@ -70,11 +70,11 @@ window.addEventListener("load", function(){
             document.body.classList.add('dark');
             if (ifStarterKit) {
                 if (document.querySelector('.navbar-logo')) {
-                    document.querySelector('.navbar-logo').setAttribute('src', '../../src/assets/img/logo.svg')
+                    document.querySelector('.navbar-logo').setAttribute('src', '../../src/assets/img/logo/logo-1.png')
                 }
             } else {
                 if (document.querySelector('.navbar-logo')) {
-                    document.querySelector('.navbar-logo').setAttribute('src', getParseObject.settings.layout.logo.darkLogo)
+                    document.querySelector('.navbar-logo').setAttribute('src', '../../src/assets/img/logo/logo-1.png')
                 }
             }
         }
