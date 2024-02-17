@@ -17,6 +17,7 @@
     <link href="{{ asset("src/bootstrap/css/bootstrap.min.css") }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset("src/css/light/plugins.css") }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset("src/css/dark/plugins.css") }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset("src/css/dark/custom.css") }}" rel="stylesheet" type="text/css" />
     <!-- END GLOBAL MANDATORY STYLES -->
 
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->

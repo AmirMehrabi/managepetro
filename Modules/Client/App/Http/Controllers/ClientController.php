@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Modules\Client\App\Rules\ClientValidation;
 
 class ClientController extends Controller
 {
@@ -28,9 +29,16 @@ class ClientController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(ClientValidation $request): RedirectResponse
     {
-        //
+        // Create a new client instance
+        $client = new Client();
+
+        // Fill the client instance with validated request data
+        $client->fill($request->validated());
+
+        // Save the client to the database
+        $client->save();
     }
 
     /**
@@ -54,7 +62,10 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id): RedirectResponse
     {
-        //
+        $client->fill($request->validated());
+
+        // Save the updated client to the database
+        $client->save();
     }
 
     /**

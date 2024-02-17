@@ -1,0 +1,1 @@
+<a href="{{ $link ?? "#"}}" class="btn {{ $class ?? 'btn-outline-dark' }}">{{ __("Cancel") }}</a>

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('first_name');
             $table->string('last_name');
+            $table->string('slug');
             $table->string('primary_email')->unique();
             $table->string('primary_phone')->unique();
             $table->string('secondary_email');
@@ -25,6 +26,8 @@ return new class extends Migration
             $table->boolean('is_organization')->default(0);
             $table->string('organization_name')->nullable();
             $table->string('address')->nullable();
+            $table->string('latitude')->nullable();
+            $table->string('longitude')->nullable();
             $table->timestamps();
         });
     }
