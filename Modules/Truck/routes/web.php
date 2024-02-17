@@ -15,5 +15,5 @@ use Modules\Truck\App\Http\Controllers\TruckController;
 */
 
 Route::group([], function () {
-    Route::resource('truck', TruckController::class)->names('truck');
+    Route::resource('trucks', TruckController::class)->names('truck');
 });
