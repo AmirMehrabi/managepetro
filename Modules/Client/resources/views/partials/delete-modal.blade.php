@@ -11,8 +11,12 @@
                     <p class="modal-text">Are you sure you want to delete <b>{{ $item->full_name }}</b>? This action is irreversible. </p>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn btn-light-dark" data-bs-dismiss="modal"><i class="flaticon-cancel-12"></i> Discard</button>
-                    <button type="button" class="btn btn-primary">Save</button>
+                    <form action="{{ route('client.destroy', $item->slug) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-light-dark">Delete</button>
+                    </form>
+                    <button class="btn btn-primary" data-bs-dismiss="modal"><i class="flaticon-cancel-12"></i> Discard</button>
                 </div>
             </div>
         </div>
