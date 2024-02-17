@@ -1,4 +1,4 @@
-@extends('client::layouts.master')
+@extends('layouts.master')
 
 @section('content')
     <h1>Hello World</h1>
