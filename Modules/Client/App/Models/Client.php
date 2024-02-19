@@ -2,28 +2,26 @@
 
 namespace Modules\Client\App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Modules\Client\Database\factories\ClientFactory;
 use Cviebrock\EloquentSluggable\Sluggable;
-
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Modules\Client\Database\factories\ClientFactory;
 
 class Client extends Model
 {
-    use HasFactory;
+    use HasFactory, Sluggable;
 
     /**
      * The attributes that are mass assignable.
      */
     protected $guarded = [];
-    
+
     protected static function newFactory(): ClientFactory
     {
         //return ClientFactory::new();
     }
 
-
-    use Sluggable;
+    
 
     /**
      * Return the sluggable configuration array for this model.
@@ -34,23 +32,45 @@ class Client extends Model
     {
         return [
             'slug' => [
-                'source' => ['first_name', 'last_name']
-            ]
+                'source' => ['first_name', 'last_name'],
+            ],
         ];
     }
 
     /* Get the route key for the model.
-    *
-    * @return string
-    */
-   public function getRouteKeyName()
-   {
-       return 'slug';
-   }
-
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 
     public function getFullNameAttribute()
     {
         return "{$this->first_name} {$this->last_name}";
+    }
+
+    /**
+     * Get all clients with their full names and IDs.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    protected function getList()
+    {
+        $clients = Client::all(); // Retrieve all clients
+
+        $clientData = []; // Initialize an array to store client data
+
+        // Loop through each client and construct data array
+        foreach ($clients as $client) {
+            $fullName = trim($client->first_name . ' ' . $client->last_name); // Concatenate first and last name
+            $clientData[] = [
+                'id' => $client->id,
+                'full_name' => $fullName,
+            ];
+        }
+
+        return $clientData;
     }
 }

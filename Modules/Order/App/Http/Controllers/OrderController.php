@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Order\App\Rules\OrderValidation;
 use Modules\Order\App\Models\Order;
+use Modules\Order\App\Models\Pipeline;
+use Modules\Client\App\Models\Client;
 
 class OrderController extends Controller
 {
@@ -28,15 +30,30 @@ class OrderController extends Controller
      */
     public function create()
     {
-        return view('order::form');
+
+        $clients = Client::pluck('first_name', 'id');
+        $pipelines = Pipeline::pluck('name', 'id');
+
+        return view('order::form', compact('clients', 'pipelines'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(OrderValidation $request): RedirectResponse
     {
-        //
+
+        // dd($request->validated());
+        // Create a new order instance
+        $order = new Order();
+
+        // Fill the order instance with validated request data
+        $order->fill($request->validated());
+
+        // Save the order to the database
+        $order->save();
+
+        return redirect()->route('order.index')->with('alertMessage', "{$order->title} was created.")->with('alertMessageClass', 'success');
     }
 
     /**
@@ -52,15 +69,22 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        return view('order::form', compact('order'));
+        $clients = Client::pluck('first_name', 'id');
+        $pipelines = Pipeline::pluck('name', 'id');
+        return view('order::form', compact('order', 'clients', 'pipelines'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id): RedirectResponse
+    public function update(OrderValidation $request, Order $order): RedirectResponse
     {
-        //
+        $order->fill($request->validated());
+
+        // Save the updated order to the database
+        $order->save();
+
+        return redirect()->route('order.index')->with('alertMessage', "{$order->name} was updated.")->with('alertMessageClass', 'success');
     }
 
     /**

@@ -30,71 +30,61 @@
                         @endif
                         <div class="col-12">
                             @component('components.text', [
-                                'label' => 'Name',
+                                'label' => 'Title',
                                 'required' => true,
-                                'placeholder' => 'Road Warrior',
-                                'name' => 'name',
-                                'value' => isset($order) ? $order->name : old('name')
+                                'placeholder' => 'Chevron Jan #1 Order',
+                                'name' => 'title',
+                                'value' => isset($order) ? $order->title : old('title')
                             ])
                             @endcomponent
                         </div>
 
+                        {{-- @dd($clients) --}}
                         <div class="col-12">
-                            @component('components.text', [
-                                'label' => "Driver's Name",
+                            @component('components.select', [
+                                'label' => "Client",
+                                'use_key' => true,
                                 'required' => true,
-                                'placeholder' => 'John Doe',
-                                'name' => 'driver_name',
-                                'value' => isset($order) ? $order->driver_name : old('driver_name')
-                            ])
-                            @endcomponent
-                        </div>
-
-                        <div class="col-12">
-                            @component('components.text', [
-                                'label' => "Plate",
-                                'required' => true,
-                                'placeholder' => 'FSM 464',
-                                'name' => 'plate',
-                                'value' => isset($order) ? $order->plate : old('plate')
+                                'options' => $clients,
+                                'name' => 'client_id',
+                                'value' => isset($order) ? $order->client_id : old('client_id')
                             ])
                             @endcomponent
                         </div>
 
                         <div class="col-12">
                             @component('components.select', [
-                                'label' => "Status",
+                                'label' => "Pipeline",
+                                'use_key' => true,
+                                'required' => true,
+                                'options' => $pipelines,
+                                'name' => 'pipeline_id',
+                                'value' => isset($order) ? $order->pipeline_id : old('pipeline_id')
+                            ])
+                            @endcomponent
+                        </div>
+
+                        <div class="col-12">
+                            @component('components.select', [
+                                'label' => "Fuel Type",
+                                'required' => true,
                                 'use_key' => true,
                                 'options' => [
-                                    'active' => 'Active',
-                                    'inactive' => 'Inactive',
-                                    'under_maintenance' => 'Under Maintenance'
-                        ],
-                                'name' => 'status',
-                                'value' => isset($order) ? $order->status : old('status')
-                            ])
-                            @endcomponent
-                        </div>
-
-                        <div class="col-12">
-                            @component('components.text', [
-                                'label' => "Mileage",
-                                'required' => true,
-                                'placeholder' => '75000',
-                                'postfix' => 'KM',
-                                'type' => 'number',
-                                'attributes' => [
-                                    'min' => 0,
+                                    'gas' => 'Gas',
+                                    'coal' => 'Coal',
+                                    'oil' => 'Oil',
+                                    'diesel' => 'Diesel',
+                                    'other' => 'Other'
                                 ],
-                                'name' => 'mileage',
-                                'value' => isset($order) ? $order->mileage : old('mileage')
+                                'name' => 'type',
+                                'value' => isset($order) ? $order->type : old('type')
                             ])
                             @endcomponent
                         </div>
 
                         <div class="col-12">
                             @component('components.text', [
-                                'label' => "Capacity",
+                                'label' => "Amount",
                                 'required' => true,
                                 'type' => 'number',
                                 'postfix' => 'Liters',
@@ -102,21 +92,42 @@
                                     'min' => 0,
                                 ],
                                 'placeholder' => '30000',
-                                'name' => 'capacity',
-                                'value' => isset($order) ? $order->capacity : old('capacity')
+                                'name' => 'amount',
+                                'value' => isset($order) ? $order->amount : old('amount')
                             ])
                             @endcomponent
                         </div>
 
                         <div class="col-12">
                             @component('components.text', [
-                                'label' => "Model",
-                                'placeholder' => 'Mercedes Axor',
-                                'name' => 'model',
-                                'value' => isset($order) ? $order->model : old('model')
+                                'label' => "Price (PL)",
+                                'required' => true,
+                                'type' => 'number',
+                                'postfix' => 'CAD',
+                                'attributes' => [
+                                    'min' => 0,
+                                ],
+                                'placeholder' => '75000',
+                                'name' => 'price',
+                                'value' => isset($order) ? $order->price : old('price')
                             ])
                             @endcomponent
                         </div>
+
+
+                        <div class="col-12">
+                            @component('components.text', [
+                                'label' => "Expected Delivery Date",
+                                'required' => true,
+                                'type' => 'datetime-local',
+                                'placeholder' => 'Expected Delivery Date',
+                                'name' => 'expected_delivery_date',
+                                'value' => isset($order) ? $order->expected_delivery_date : old('expected_delivery_date')
+                            ])
+                            @endcomponent
+                        </div>
+
+
 
 
 

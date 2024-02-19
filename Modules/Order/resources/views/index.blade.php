@@ -59,13 +59,17 @@
                             <h4>Name</h4>
                         </div>
                         <div class="user-email">
-                            <h4>Email</h4>
+                            <h4>Client</h4>
                         </div>
                         <div class="user-location">
-                            <h4 style="margin-left: 0;">Address</h4>
+                            <h4 style="margin-left: 0;">Driver</h4>
+                        </div>
+
+                        <div class="user-phone">
+                            <h4 style="margin-left: 3px;">Status</h4>
                         </div>
                         <div class="user-phone">
-                            <h4 style="margin-left: 3px;">Phone</h4>
+                            <h4 style="margin-left: 3px;">Expected Delivery Date</h4>
                         </div>
                         <div class="user-phone">
                             <h4 style="margin-left: 3px;">Manage</h4>
@@ -84,21 +88,24 @@
                             </div>
                             {{-- <img src="../src/assets/img/profile-{{ $loop->index % 5 + 1 }}.jpeg" alt="avatar"> --}}
                             <div class="user-meta-info">
-                                <p class="user-name" data-name="{{ $order->name }}">{{ $order->name }}</p>
-                                <p class="user-work" data-occupation="{{ $order->status }}">{{ $order->status }}</p>
+                                <p class="user-name" data-name="{{ $order->title }}">{{ $order->title }}</p>
                             </div>
                         </div>
                         <div class="user-email">
                             <p class="info-title">Email: </p>
-                            <p class="usr-email-addr" data-email="{{ $order->email }}">{{ $order->email }}</p>
+                            <p class="usr-email-addr" data-email="{{ $order->client->full_name }}">{{ $order->client->full_name }}</p>
+                        </div>
+                        <div class="user-email">
+                            <p class="info-title">Email: </p>
+                            <p class="usr-email-addr" data-email="{{ $order->truck->name ?? 'N/A' }}">{{ $order->truck->name ?? 'N/A' }}</p>
                         </div>
                         <div class="user-location">
-                            <p class="info-title">Address: </p>
-                            <p class="usr-location" data-location="{{ $order->address }}">{{ $order->address }}</p>
+                            <span
+                            class="badge badge-{{ $order->status_badge_class }}">{{$order->status_badge_text }}</span>
                         </div>
                         <div class="user-phone">
                             <p class="info-title">Manage: </p>
-                            <p class="usr-ph-no" data-phone="{{ $order->phone }}">{{ $order->phone }}</p>
+                            <p class="usr-ph-no" data-phone="{{ $order->expected_delivery_date }}">{{ $order->expected_delivery_date }}</p>
                         </div>
                         <div class="action-btn">
                             <a href="{{ route('order.edit', $order->slug) }}">
