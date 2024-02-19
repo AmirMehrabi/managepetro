@@ -54,4 +54,49 @@ class Truck extends Model
     {
         return $this->hasMany(Order::class);
     }
+
+
+    public function getStatusBadgeClassAttribute()
+    {
+        switch ($this->status) {
+            case 'inactive':
+                return 'danger';
+                break;
+
+            case 'under_maintenance':
+                return 'warning';
+                break;
+
+            case 'active':
+                return 'success';
+                break;
+
+            default:
+                return 'danger';
+                break;
+        }
+    }
+
+    public function getStatusBadgeTextAttribute()
+    {
+        switch ($this->status) {
+            case 'inactive':
+                return 'Inactive';
+                break;
+
+            case 'under_maintenance':
+                return 'Under Maintenance';
+                break;
+
+
+
+                case 'active':
+                    return 'Active';
+                    break;
+
+            default:
+                return 'Inactive';
+                break;
+        }
+    }
 }

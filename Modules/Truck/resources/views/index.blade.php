@@ -59,13 +59,19 @@
                             <h4>Name</h4>
                         </div>
                         <div class="user-email">
-                            <h4>Email</h4>
+                            <h4>Driver Name</h4>
                         </div>
                         <div class="user-location">
-                            <h4 style="margin-left: 0;">Address</h4>
+                            <h4 style="margin-left: 0;">Plate</h4>
                         </div>
                         <div class="user-phone">
-                            <h4 style="margin-left: 3px;">Phone</h4>
+                            <h4 style="margin-left: 3px;">Model</h4>
+                        </div>
+                        <div class="user-phone">
+                            <h4 style="margin-left: 3px;">Capacity</h4>
+                        </div>
+                        <div class="user-phone">
+                            <h4 style="margin-left: 3px;">Status</h4>
                         </div>
                         <div class="user-phone">
                             <h4 style="margin-left: 3px;">Manage</h4>
@@ -85,20 +91,28 @@
                             {{-- <img src="../src/assets/img/profile-{{ $loop->index % 5 + 1 }}.jpeg" alt="avatar"> --}}
                             <div class="user-meta-info">
                                 <p class="user-name" data-name="{{ $truck->name }}">{{ $truck->name }}</p>
-                                <p class="user-work" data-occupation="{{ $truck->status }}">{{ $truck->status }}</p>
                             </div>
                         </div>
                         <div class="user-email">
                             <p class="info-title">Email: </p>
-                            <p class="usr-email-addr" data-email="{{ $truck->email }}">{{ $truck->email }}</p>
+                            <p class="usr-email-addr" data-email="{{ $truck->driver_name }}">{{ $truck->driver_name }}</p>
                         </div>
                         <div class="user-location">
                             <p class="info-title">Address: </p>
-                            <p class="usr-location" data-location="{{ $truck->address }}">{{ $truck->address }}</p>
+                            <p class="usr-location" data-location="{{ $truck->plate }}">{{ $truck->plate }}</p>
                         </div>
                         <div class="user-phone">
                             <p class="info-title">Manage: </p>
-                            <p class="usr-ph-no" data-phone="{{ $truck->phone }}">{{ $truck->phone }}</p>
+                            <p class="usr-ph-no" data-phone="{{ $truck->model }}">{{ $truck->model }}</p>
+                        </div>
+                        <div class="user-phone">
+                            <p class="info-title">Manage: </p>
+                            <p class="usr-ph-no" data-phone="{{ $truck->capacity }}">{{ $truck->capacity }}</p>
+                        </div>
+
+                        <div class="user-location">
+                            <span
+                            class="badge badge-{{ $truck->status_badge_class }}">{{$truck->status_badge_text }}</span>
                         </div>
                         <div class="action-btn">
                             <a href="{{ route('truck.edit', $truck->slug) }}">
