@@ -16,16 +16,20 @@ class OrderValidation extends FormRequest
     public function rules()
     {
         $rules = [
-            'title' => 'required|string|max:255',
+            'title' => 'required|string|unique:orders,title|max:255',
             'client_id' => 'required|integer',
             'pipeline_id' => 'required|integer',
             'amount' => 'required|integer',
+            'price_per_unit' => 'required|integer',
             'type' => 'required|string|max:75',
             'expected_delivery_date' => 'required|date'
         ];
 
 
-        
+        if ($this->isMethod('PUT')) {
+            $rules['title'] .= ',' . $this->route('client')->id;
+
+        }
 
         return $rules;
     }

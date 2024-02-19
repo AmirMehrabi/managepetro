@@ -10,6 +10,7 @@ use Modules\Order\App\Models\Pipeline;
 use Modules\Order\App\Models\PipelineAction;
 use Modules\Order\Database\factories\OrderFactory;
 use Modules\Truck\App\Models\Truck;
+use Modules\Invoice\App\Models\Invoice;
 use Modules\Order\App\Events\OrderCreated;
 
 
@@ -129,5 +130,12 @@ class Order extends Model
         self::created(function ($order) {
             event(new OrderCreated($order));
         });
+    }
+
+
+    // Define relationship with invoices
+    public function invoice()
+    {
+        return $this->hasOne(Invoice::class);
     }
 }

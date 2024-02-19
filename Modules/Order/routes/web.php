@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Modules\Order\App\Http\Controllers\OrderController;
+use Modules\Order\App\Http\Controllers\PipelineActionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,4 +17,5 @@ use Modules\Order\App\Http\Controllers\OrderController;
 
 Route::group([], function () {
     Route::resource('orders', OrderController::class)->names('order');
+    Route::resource('pipeline-actions', PipelineActionController::class)->names('pipeline-action')->only(['store', 'destroy']);
 });

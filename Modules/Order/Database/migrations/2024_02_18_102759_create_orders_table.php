@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('truck_id')->nullable()->constrained()->onDelete('cascade');
             $table->foreignId('pipeline_id')->constrained()->onDelete('cascade');
             $table->decimal('amount', 10, 2);
+            $table->decimal('price_per_unit', 10, 2);
             $table->enum('status', ['pending', 'approved', 'in_progress', 'delivered'])->default('pending');
             $table->enum('type', ['gas', 'coal', 'oil', 'diesel', 'other'])->default('gas');
             $table->dateTime('expected_delivery_date')->nullable();

@@ -100,7 +100,7 @@
 
                         <div class="col-12">
                             @component('components.text', [
-                                'label' => "Price (PL)",
+                                'label' => "Price (Per Unit)",
                                 'required' => true,
                                 'type' => 'number',
                                 'postfix' => 'CAD',
@@ -108,8 +108,8 @@
                                     'min' => 0,
                                 ],
                                 'placeholder' => '75000',
-                                'name' => 'price',
-                                'value' => isset($order) ? $order->price : old('price')
+                                'name' => 'price_per_unit',
+                                'value' => isset($order) ? $order->price_per_unit : old('price_per_unit')
                             ])
                             @endcomponent
                         </div>
