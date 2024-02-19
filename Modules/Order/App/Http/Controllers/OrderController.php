@@ -14,6 +14,11 @@ use Modules\Client\App\Models\Client;
 
 class OrderController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('check.prerequisites')->only(['create', 'store']);
+    }
     /**
      * Display a listing of the resource.
      */
