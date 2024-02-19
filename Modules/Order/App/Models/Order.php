@@ -95,6 +95,10 @@ class Order extends Model
                 return 'primary';
                 break;
 
+            case 'delivered':
+                return 'success';
+                break;
+
             default:
                 return 'warning';
                 break;
@@ -115,6 +119,10 @@ class Order extends Model
             case 'in_progress':
                 return 'In Progress';
                 break;
+
+                case 'delivered':
+                    return 'Delivered';
+                    break;
 
             default:
                 return 'Pending';

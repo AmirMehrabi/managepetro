@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Order\App\Models\Order;
 use Modules\Order\App\Models\PipelineAction;
+use Modules\Order\App\Events\OrderPipelineActionAdded;
 
 class PipelineActionController extends Controller
 {
@@ -36,10 +37,11 @@ class PipelineActionController extends Controller
         
         $pipelineAction = PipelineAction::where('id', $request->pipeline_action)->firstOrFail();
 
-        
+        event(new OrderPipelineActionAdded($order, $pipelineAction));
 
         $order->pipelineActions()->attach($pipelineAction->id, ['taken_at' => now()]);
-        // $opportunity->moveToNextPipelineStage();
+
+        
         return redirect()->back();
     }
 

@@ -88,27 +88,35 @@
                 @php
                     $lastDonePipelineAction = null;
                 @endphp
-                @foreach ($order->pipeline->pipelineActions as $pipelineAction)
+                @foreach ($order->pipeline->pipelineActions as $index => $pipelineAction)
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         {{ $pipelineAction->name }}
 
-                        @if ($order->pipelineActions->contains($pipelineAction))
+                        @php
+                            $isFirstUndone = !$order->pipelineActions->contains($pipelineAction) && !isset($firstUndoneShown);
+                        @endphp
+
+                        @if ($isFirstUndone)
+                            <form
+                                action="{{ route('pipeline-action.store', ['order' => $order->slug, 'pipeline_action' => $pipelineAction->id]) }}"
+                                method="POST" style="margin-bottom: 0px;">
+                                @csrf
+                                <button type="submit" class="btn btn-sm btn-outline-primary">Mark as done</button>
+                            </form>
+                            @php
+                                $firstUndoneShown = true;
+                            @endphp
+                        @elseif ($order->pipelineActions->contains($pipelineAction))
                             <span class="badge bg-success">done</span>
                             @php
                                 $lastDonePipelineAction = $pipelineAction;
                             @endphp
-                        @else
-                            <form
-                                action="{{ route('pipeline-action.store', ['order' => $order->slug, 'pipeline_action' => $pipelineAction->id]) }}"
-                                method="POST" style="margin-botto: 0px;">
-                                @csrf
-                                {{-- <input type="hidden" name="pipeline_action_id" value="{{ $pipelineAction->id }}"> --}}
-                                <button type="submit" class="btn btn-sm btn-outline-primary">Mark as done</button>
-                            </form>
                         @endif
                     </li>
                 @endforeach
-                @if (!is_null($lastDonePipelineAction))
+
+
+                {{-- @if (!is_null($lastDonePipelineAction))
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         {{ $lastDonePipelineAction->name }}
                         <form
@@ -120,7 +128,7 @@
                             <button type="submit" class="btn btn-sm btn-danger">Undone</button>
                         </form>
                     </li>
-                @endif
+                @endif --}}
             </ul>
         </div>
     </div>

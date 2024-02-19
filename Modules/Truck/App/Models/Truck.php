@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\Truck\Database\factories\TruckFactory;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Modules\Order\App\Models\Order;
 
 class Truck extends Model
 {
@@ -45,4 +46,12 @@ class Truck extends Model
    {
        return 'slug';
    }
+
+    /**
+     * Get the orders assigned to this truck.
+     */
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }
