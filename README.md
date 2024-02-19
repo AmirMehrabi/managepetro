@@ -21,9 +21,10 @@ To get started with the Fuel Delivery System, follow these steps:
 1.  **Installation**:
     
     *   Clone the repository to your local machine.
-    *   Run `composer install` to install dependencies.
+    *   Run `composer install` and `npm install` to install dependencies.
     *   Configure your `.env` file with database and other settings.
     *   Run `php artisan migrate` to migrate the database schema.
+    *   Run `npm run dev` to build vite for production.
     *   Run `artisan db:seed --class=PipelineSeeder` to seed the Pipeline and PipelineAction models
 2.  **Usage**:
     
