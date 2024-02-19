@@ -8,6 +8,8 @@ use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvi
 use Illuminate\Support\Facades\Event;
 use Modules\Order\App\Events\OrderCreated;
 use Modules\Order\App\Listeners\GenerateInvoiceListener;
+use Modules\Order\App\Events\OrderPipelineActionAdded;
+use Modules\Order\App\Listeners\UpdateOrderStatusOnPipelineActionAdded;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -22,6 +24,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         OrderCreated::class => [
             GenerateInvoiceListener::class,
+        ],
+        OrderPipelineActionAdded::class => [
+            UpdateOrderStatusOnPipelineActionAdded::class,
         ],
     ];
 
