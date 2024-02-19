@@ -1,5 +1,6 @@
 {
     "Client": true,
     "Truck": true,
-    "Order": true
+    "Order": true,
+    "Invoice": true
 }
