@@ -14,6 +14,6 @@ use Modules\Invoice\App\Http\Controllers\InvoiceController;
 |
 */
 
-Route::middleware('auth')->group([], function () {
-    Route::resource('invoice', InvoiceController::class)->names('invoice');
+Route::group([], function () {
+    Route::resource('invoice', InvoiceController::class)->names('invoice')->middleware('auth');
 });

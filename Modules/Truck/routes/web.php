@@ -14,6 +14,6 @@ use Modules\Truck\App\Http\Controllers\TruckController;
 |
 */
 
-Route::middleware('auth')->group([], function () {
-    Route::resource('trucks', TruckController::class)->names('truck');
+Route::group([], function () {
+    Route::resource('trucks', TruckController::class)->names('truck')->middleware('auth');
 });
