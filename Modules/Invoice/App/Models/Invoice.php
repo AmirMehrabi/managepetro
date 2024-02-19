@@ -13,10 +13,17 @@ class Invoice extends Model
     /**
      * The attributes that are mass assignable.
      */
-    protected $fillable = [];
+    protected $guarded = [];
     
     protected static function newFactory(): InvoiceFactory
     {
         //return InvoiceFactory::new();
+    }
+
+
+    // Define relationship with orders
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
     }
 }

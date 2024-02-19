@@ -10,6 +10,8 @@ use Modules\Order\App\Models\Pipeline;
 use Modules\Order\App\Models\PipelineAction;
 use Modules\Order\Database\factories\OrderFactory;
 use Modules\Truck\App\Models\Truck;
+use Modules\Order\App\Events\OrderCreated;
+
 
 class Order extends Model
 {
@@ -34,7 +36,7 @@ class Order extends Model
     {
         return [
             'slug' => [
-                'source' => ['name'],
+                'source' => ['title'],
             ],
         ];
     }
@@ -117,5 +119,15 @@ class Order extends Model
                 return 'Pending';
                 break;
         }
+    }
+
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        self::created(function ($order) {
+            event(new OrderCreated($order));
+        });
     }
 }
