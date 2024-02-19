@@ -113,7 +113,7 @@
 
                         <li class="timeline-item">
                             <span class="timeline-item-icon faded-icon">
-                                2
+                                3
                             </span>
                             <div class="timeline-item-description">
                                 {{-- <i>
