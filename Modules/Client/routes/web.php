@@ -14,6 +14,6 @@ use Modules\Client\App\Http\Controllers\ClientController;
 |
 */
 
-Route::group([], function () {
+Route::middleware('auth')->group([], function () {
     Route::resource('clients', ClientController::class)->names('client');
 });

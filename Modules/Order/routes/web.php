@@ -15,7 +15,7 @@ use Modules\Order\App\Http\Controllers\PipelineActionController;
 |
 */
 
-Route::group([], function () {
+Route::middleware('auth')->group([], function () {
     Route::resource('orders', OrderController::class)->names('order');
     Route::resource('pipeline-actions', PipelineActionController::class)->names('pipeline-action')->only(['store', 'destroy']);
 });
