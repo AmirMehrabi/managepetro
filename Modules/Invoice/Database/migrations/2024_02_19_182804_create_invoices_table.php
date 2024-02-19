@@ -13,7 +13,12 @@ return new class extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
-            
+            $table->unsignedBigInteger('order_id');
+            $table->string('invoice_number')->unique();
+            $table->decimal('total_amount', 10, 2);
+            $table->date('issue_date');
+            $table->date('due_date');
+            $table->enum('status', ['unpaid', 'paid'])->default('unpaid');
             $table->timestamps();
         });
     }
