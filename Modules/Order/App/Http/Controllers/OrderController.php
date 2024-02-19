@@ -9,6 +9,7 @@ use Illuminate\Http\Response;
 use Modules\Order\App\Rules\OrderValidation;
 use Modules\Order\App\Models\Order;
 use Modules\Order\App\Models\Pipeline;
+use Modules\Order\App\Models\PipelineAction;
 use Modules\Client\App\Models\Client;
 
 class OrderController extends Controller
@@ -61,7 +62,21 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        return view('order::show', compact('order'));
+
+        // Inside your controller method
+        $firstUndonePipelineAction = null;
+        $latestDonePipelineAction = null;
+
+        foreach ($order->pipeline->pipelineActions as $pipelineAction) {
+            if (!$order->pipelineActions->contains($pipelineAction) && !$firstUndonePipelineAction) {
+                $firstUndonePipelineAction = $pipelineAction;
+            }
+
+            if ($order->pipelineActions->contains($pipelineAction)) {
+                $latestDonePipelineAction = $pipelineAction;
+            }
+        }
+        return view('order::show', compact('order', 'firstUndonePipelineAction', 'latestDonePipelineAction'));
     }
 
     /**

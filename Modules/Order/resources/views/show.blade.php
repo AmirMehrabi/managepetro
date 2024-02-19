@@ -10,6 +10,16 @@
 @endsection
 
 @section('breadcrumb')
+<nav class="breadcrumb-style-one" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('order.index') }}">{!! config('order.plural_name') !!}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Show {!! config('order.name') !!}</li>
+    </ol>
+</nav>
+@endsection
+
+@section('breadcrumb')
     <nav class="breadcrumb-style-one" aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
@@ -26,6 +36,10 @@
             <p class="card-text"><strong>Customer Name:</strong> {{ $order->client->full_name }}</p>
             <p class="card-text"><strong>Total Amount:</strong> ${{ number_format($order->invoice->total_amount, 2) }}</p>
             <p class="card-text"><strong>Order Date:</strong> {{ $order->created_at->format('M d, Y') }}</p>
+            <p class="card-text"><strong>Expected Delivery:</strong> {{ $order->expected_delivery_date }}</p>
+
+            <p class="card-text"><strong>Approved Date:</strong> {{ $order->approved_date }}</p>
+            <p class="card-text"><strong>Actual Delivery Date:</strong> {{ $order->delivery_date }}</p>
             <p class="card-text"><strong>Status:</strong> <span
                     class="badge badge-{{ $order->status_badge_class }}">{{ $order->status_badge_text }}</span></p>
             <!-- Add more relevant information as needed -->
@@ -85,35 +99,31 @@
 
 
             <ul class="list-group d-flex justify-content-between">
-                @php
-                    $lastDonePipelineAction = null;
-                @endphp
-                @foreach ($order->pipeline->pipelineActions as $index => $pipelineAction)
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        {{ $pipelineAction->name }}
+                @foreach ($order->pipeline->pipelineActions as $pipelineAction)
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    {{ $pipelineAction->name }}
+            
+                    @if ($pipelineAction === $firstUndonePipelineAction)
+                        <form action="{{ route('pipeline-action.store', ['order' => $order->slug, 'pipeline_action' => $pipelineAction->id]) }}" method="POST" style="margin-bottom: 0px;">
+                            @csrf
+                            <button type="submit" class="btn btn-sm btn-outline-primary">Mark as done</button>
+                        </form>
+                    @elseif ($pipelineAction === $latestDonePipelineAction)
+                    <div class="d-flex gap-1">
+                        <span class="badge bg-success">Done</span>
+                        <form
+                            action="{{ route('pipeline-action.destroy', ['order' => $order->slug, 'pipeline_action' => $latestDonePipelineAction->id]) }}"
+                            method="POST" style="margin-botto: 0px;">
+                            @csrf
+                            @method('DELETE')
+                            <input type="hidden" name="pipeline_action_id" value="{{ $latestDonePipelineAction->id }}">
+                            <button type="submit" class="btn btn-sm btn-outline-danger">Undone Action</button>
+                        </form>
+                    </div>
 
-                        @php
-                            $isFirstUndone = !$order->pipelineActions->contains($pipelineAction) && !isset($firstUndoneShown);
-                        @endphp
-
-                        @if ($isFirstUndone)
-                            <form
-                                action="{{ route('pipeline-action.store', ['order' => $order->slug, 'pipeline_action' => $pipelineAction->id]) }}"
-                                method="POST" style="margin-bottom: 0px;">
-                                @csrf
-                                <button type="submit" class="btn btn-sm btn-outline-primary">Mark as done</button>
-                            </form>
-                            @php
-                                $firstUndoneShown = true;
-                            @endphp
-                        @elseif ($order->pipelineActions->contains($pipelineAction))
-                            <span class="badge bg-success">done</span>
-                            @php
-                                $lastDonePipelineAction = $pipelineAction;
-                            @endphp
-                        @endif
-                    </li>
-                @endforeach
+                    @endif
+                </li>
+            @endforeach
 
 
                 {{-- @if (!is_null($lastDonePipelineAction))
