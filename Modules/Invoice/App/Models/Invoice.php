@@ -5,6 +5,8 @@ namespace Modules\Invoice\App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Invoice\Database\factories\InvoiceFactory;
+use Modules\Order\App\Models\Order;
+
 
 class Invoice extends Model
 {
@@ -59,4 +61,6 @@ class Invoice extends Model
                 break;
         }
     }
+
+
 }
