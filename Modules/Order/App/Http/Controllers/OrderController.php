@@ -99,12 +99,7 @@ class OrderController extends Controller
      */
     public function update(OrderValidation $request, Order $order): RedirectResponse
     {
-        $order->fill($request->validated());
-
-        // Save the updated order to the database
-        $order->save();
-
-        return redirect()->route('order.index')->with('alertMessage', "{$order->name} was updated.")->with('alertMessageClass', 'success');
+        // ATM we don't have the ability to update orders
     }
 
     /**

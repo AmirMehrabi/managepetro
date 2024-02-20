@@ -15,5 +15,5 @@ use Modules\Client\App\Http\Controllers\ClientController;
 */
 
 Route::group([], function () {
-    Route::resource('clients', ClientController::class)->names('client')->middleware('auth');
+    Route::resource('clients', ClientController::class)->except('show')->names('client')->middleware('auth');
 });

@@ -65,10 +65,9 @@
                         </li> --}}
                         <li class="timeline-item extra-space">
                             <span class="timeline-item-icon filled-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round"
-                                    class="feather feather-message-circle">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="feather feather-message-circle">
                                     <path
                                         d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
                                     </path>
@@ -82,7 +81,9 @@
                                     <span class="align-self-center"><a href="#">Start Here</span> </a>
                                 </div>
                                 <div class="comment">
-                                    <p>The amount of Fuel is unlimited in the system. When you issue an Order, an automatic invoice will be generated based on the "amount" and "price per unit" of that order. </p>
+                                    <p>The amount of Fuel is unlimited in the system. When you issue an Order, an automatic
+                                        invoice will be generated based on the "amount" and "price per unit" of that order.
+                                    </p>
                                 </div>
 
                             </div>
@@ -95,7 +96,8 @@
                                 {{-- <i>
                                     <img alt="profile" src="../src/assets/img/profile-20.jpeg">
                                 </i> --}}
-                                <span class="align-self-center">The first step is to create some <a href="{{ route('client.index') }}">Clients</a> in the system.</span>
+                                <span class="align-self-center">The first step is to create some <a
+                                        href="{{ route('client.index') }}">Clients</a> in the system.</span>
                             </div>
                         </li>
 
@@ -107,7 +109,8 @@
                                 {{-- <i>
                                     <img alt="profile" src="../src/assets/img/profile-20.jpeg">
                                 </i> --}}
-                                <span class="align-self-center">Then you have to add your <a href="{{ route('truck.index') }}">Trucks</a> in the system.</span>
+                                <span class="align-self-center">Then you have to add your <a
+                                        href="{{ route('truck.index') }}">Trucks</a> in the system.</span>
                             </div>
                         </li>
 
@@ -119,7 +122,8 @@
                                 {{-- <i>
                                     <img alt="profile" src="../src/assets/img/profile-20.jpeg">
                                 </i> --}}
-                                <span class="align-self-center">Now you are able to go ahead and issue <a href="{{ route('order.index') }}">Fuel Orders</a> for your clients.</span>
+                                <span class="align-self-center">Now you are able to go ahead and issue <a
+                                        href="{{ route('order.index') }}">Fuel Orders</a> for your clients.</span>
                             </div>
                         </li>
                         <li class="timeline-item">
@@ -157,18 +161,22 @@
                                         <img alt="profile" src="../src/assets/img/profile-24.jpeg">
                                     </i> --}}
                                     <span class="align-self-center"><a href="#">Explanation for orders</span> </a<
-                                </div>
-                                <div class="comment">
-                                    <p>
-                                        When you issue an order, there is a pipeline for it. If you go to the Show page of order you will see a timeline for the order's pipeline.
-                                        By marking the "Approved by customer" Pipeline Action, the status of order will be changed to "Approved".
-                                        By marking the "Invoice Paid", the status of its invoice will be changed to "Paid".
-                                        By marking the "En Route", it'll automatically be assigned to one of the Trucks. 
-                                        By marking the "Delivered To Customer", the status will be changed to "Delivered" and the order will be detached from its driver.
-                                    </p>
-                                </div>
+                                        </div>
+                                    <div class="comment">
+                                        <p>
+                                            When you issue an order, there is a pipeline for it. If you go to the Show page
+                                            of order you will see a timeline for the order's pipeline.
+                                            By marking the "Approved by customer" Pipeline Action, the status of order will
+                                            be changed to "Approved".
+                                            By marking the "Invoice Paid", the status of its invoice will be changed to
+                                            "Paid".
+                                            By marking the "En Route", it'll automatically be assigned to one of the Trucks.
+                                            By marking the "Delivered To Customer", the status will be changed to
+                                            "Delivered" and the order will be detached from its driver.
+                                        </p>
+                                    </div>
 
-                            </div>
+                                </div>
                         </li>
                     </ol>
 
@@ -252,10 +260,6 @@
 
                 </div>
             </div>
-            <div class="card-footer px-4 pt-0 border-0">
-                <a href="https://themeforest.net/item/cork-responsive-admin-dashboard-template/25582188"
-                    target="_blank">Visit on Themeforest.</a>
-            </div>
         </div>
     </div>
 
@@ -280,7 +284,6 @@
                                 <th>Issue Date</th>
                                 <th>Due Date</th>
                                 <th class="text-center">Status</th>
-                                {{-- <th class="text-center">Action</th> --}}
                             </tr>
                             <tr aria-hidden="true" class="mt-3 d-block table-row-hidden"></tr>
                         </thead>
@@ -294,7 +297,10 @@
                                     <td>{{ $invoice->issue_date }}</td>
                                     <td>{{ $invoice->due_date }}</td>
                                     {{-- <td>320</td> --}}
-                                    <td class="text-center"><span class="badge badge-success">Approved</span></td>
+                                    <td class="text-center">
+                                        <span
+                                            class="badge badge-{{ $invoice->status_badge_class }}">{{ $invoice->status_badge_text }}</span>
+                                    </td>
                                 </tr>
                             @empty
                                 <tr>

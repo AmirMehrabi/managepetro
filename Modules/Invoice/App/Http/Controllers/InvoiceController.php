@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Modules\Invoice\App\Models\Invoice;
 
 class InvoiceController extends Controller
 {
@@ -14,7 +15,12 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        return view('invoice::index');
+
+        // Retrieve all invoices from the database, didn't paginate because it's for demo purposes
+        $invoices = Invoice::all();
+
+        // Return a view with the invoices data
+        return view('invoice::index', compact('invoices'));
     }
 
     /**

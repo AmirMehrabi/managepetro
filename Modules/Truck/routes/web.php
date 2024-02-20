@@ -15,5 +15,5 @@ use Modules\Truck\App\Http\Controllers\TruckController;
 */
 
 Route::group([], function () {
-    Route::resource('trucks', TruckController::class)->names('truck')->middleware('auth');
+    Route::resource('trucks', TruckController::class)->except('show')->names('truck')->middleware('auth');
 });

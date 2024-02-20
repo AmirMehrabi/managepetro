@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Invoice\Database\factories\InvoiceFactory;
 use Modules\Order\App\Models\Order;
+use NumberFormatter;
 
 
 class Invoice extends Model
@@ -60,6 +61,20 @@ class Invoice extends Model
                 return 'Unpaid';
                 break;
         }
+    }
+
+
+    /**
+     * Format the total_amount attribute as Canadian Dollar amount.
+     *
+     * @param  float  $value
+     * @return string
+     */
+    public function getTotalAmountAttribute($value)
+    {
+        // Format the total amount as Canadian Dollar amount
+        $formatter = new NumberFormatter('en_CA', NumberFormatter::CURRENCY);
+        return $formatter->formatCurrency($value, 'CAD');
     }
 
 
