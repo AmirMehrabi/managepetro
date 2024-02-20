@@ -8,9 +8,17 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Truck\App\Rules\TruckValidation;
 use Modules\Truck\App\Models\Truck;
+use Modules\Truck\App\Services\TruckService;
 
 class TruckController extends Controller
 {
+
+    protected $truckService;
+
+    public function __construct(TruckService $truckService)
+    {
+        $this->truckService = $truckService;
+    }
     /**
      * Display a listing of the resource.
      */
@@ -83,6 +91,10 @@ class TruckController extends Controller
      */
     public function destroy(Truck $truck)
     {
+
+        if (!$this->truckService->canDelete($truck)) {
+            return redirect()->back()->with("alertMessage", "Cannot delete truck with associated orders.")->with('alertMessageClass', 'danger');
+        }
 
         $name = $truck->name;
         $truck->delete();
