@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('header-assets')
+    <link href="{{ asset('src/assets/css/dark/components/timeline.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('src/assets/css/light/components/timeline.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 @section('breadcrumb')
