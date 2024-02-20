@@ -126,24 +126,7 @@
                                         href="{{ route('order.index') }}">Fuel Orders</a> for your clients.</span>
                             </div>
                         </li>
-                        <li class="timeline-item">
-                            <span class="timeline-item-icon faded-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="feather feather-arrow-right">
-                                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                                    <polyline points="12 5 19 12 12 19"></polyline>
-                                </svg>
-                            </span>
-                            <div class="timeline-item-description">
-                                {{-- <i>
-                                    <img alt="profile" src="../src/assets/img/profile-12.jpeg">
-                                </i> --}}
-                                <span class="align-self-center"><a href="#">Linda Park</a> moved <a
-                                        href="#">Eric Lubin</a> to <a href="#"> Technical Test</a> on
-                                    <span>May 20, 2022</span></span>
-                            </div>
-                        </li>
+
                         <li class="timeline-item extra-space">
                             <span class="timeline-item-icon filled-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
