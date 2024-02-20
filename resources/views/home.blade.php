@@ -54,16 +54,7 @@
 
                 <div class="">
                     <ol class="timeline">
-                        {{-- <li class="timeline-item">
-                            <span class="timeline-item-icon avatar-icon">
-                                <i class="avatar">
-                                    <img alt="profile" src="../src/assets/img/profile-5.jpeg">
-                                </i>
-                            </span>
-                            <div class="new-comment">
-                                <input type="text" class="form-control" placeholder="Add a comment...">
-                            </div>
-                        </li> --}}
+
                         <li class="timeline-item extra-space">
                             <span class="timeline-item-icon filled-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -76,9 +67,7 @@
                             </span>
                             <div class="timeline-item-wrapper">
                                 <div class="timeline-item-description">
-                                    {{-- <i>
-                                        <img alt="profile" src="../src/assets/img/profile-24.jpeg">
-                                    </i> --}}
+
                                     <span class="align-self-center"><a href="#">Start Here</span> </a>
                                 </div>
                                 <div class="comment">
@@ -94,9 +83,7 @@
                                 1
                             </span>
                             <div class="timeline-item-description">
-                                {{-- <i>
-                                    <img alt="profile" src="../src/assets/img/profile-20.jpeg">
-                                </i> --}}
+
                                 <span class="align-self-center">The first step is to create some <a
                                         href="{{ route('client.index') }}">Clients</a> in the system.</span>
                             </div>
@@ -107,9 +94,7 @@
                                 2
                             </span>
                             <div class="timeline-item-description">
-                                {{-- <i>
-                                    <img alt="profile" src="../src/assets/img/profile-20.jpeg">
-                                </i> --}}
+
                                 <span class="align-self-center">Then you have to add your <a
                                         href="{{ route('truck.index') }}">Trucks</a> in the system.</span>
                             </div>
@@ -120,9 +105,6 @@
                                 3
                             </span>
                             <div class="timeline-item-description">
-                                {{-- <i>
-                                    <img alt="profile" src="../src/assets/img/profile-20.jpeg">
-                                </i> --}}
                                 <span class="align-self-center">Now you are able to go ahead and issue <a
                                         href="{{ route('order.index') }}">Fuel Orders</a> for your clients.</span>
                             </div>
@@ -130,10 +112,9 @@
 
                         <li class="timeline-item extra-space">
                             <span class="timeline-item-icon filled-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round"
-                                    class="feather feather-message-circle">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="feather feather-message-circle">
                                     <path
                                         d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
                                     </path>
@@ -141,9 +122,7 @@
                             </span>
                             <div class="timeline-item-wrapper">
                                 <div class="timeline-item-description">
-                                    {{-- <i>
-                                        <img alt="profile" src="../src/assets/img/profile-24.jpeg">
-                                    </i> --}}
+
                                     <span class="align-self-center"><a href="#">Explanation for orders</span> </a<
                                         </div>
                                     <div class="comment">
@@ -163,9 +142,6 @@
                                 </div>
                         </li>
                     </ol>
-
-                    
-
                 </div>
             </div>
         </div>
@@ -204,7 +180,6 @@
                                     <td>{{ $invoice->total_amount }}</td>
                                     <td>{{ $invoice->issue_date }}</td>
                                     <td>{{ $invoice->due_date }}</td>
-                                    {{-- <td>320</td> --}}
                                     <td class="text-center">
                                         <span
                                             class="badge badge-{{ $invoice->status_badge_class }}">{{ $invoice->status_badge_text }}</span>
@@ -215,7 +190,6 @@
                                     <td colspan="6">There aren't any invoices in the system yet.</td>
                                 </tr>
                             @endforelse
-
 
                         </tbody>
                     </table>
