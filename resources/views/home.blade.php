@@ -51,7 +51,7 @@
                 <h5 class="card-title mb-0">Basic Usage</h5>
                 <p class="card-text mb-3">A quick guide on how to use this demo.</p>
 
-                <div class="widget-content widget-content-area pb-1">
+                <div class="">
                     <ol class="timeline">
                         {{-- <li class="timeline-item">
                             <span class="timeline-item-icon avatar-icon">
