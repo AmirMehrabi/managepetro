@@ -8,9 +8,17 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Client\App\Rules\ClientValidation;
 use Modules\Client\App\Models\Client;
+use Modules\Client\App\Services\ClientService;
 
 class ClientController extends Controller
 {
+
+    protected $clientService;
+
+    public function __construct(ClientService $clientService)
+    {
+        $this->clientService = $clientService;
+    }
     /**
      * Display a listing of the resource.
      */
@@ -84,6 +92,11 @@ class ClientController extends Controller
      */
     public function destroy(Client $client)
     {
+
+        if (!$this->clientService->canDelete($client)) {
+            return redirect()->back()->with("alertMessage", "Cannot delete client with associated orders.")->with('alertMessageClass', 'danger');
+        }
+
         $full_name = $client->full_name;
         $client->delete();
 

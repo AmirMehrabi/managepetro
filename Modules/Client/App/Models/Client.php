@@ -6,6 +6,7 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Client\Database\factories\ClientFactory;
+use Modules\Order\App\Models\Order;
 
 class Client extends Model
 {
@@ -72,5 +73,10 @@ class Client extends Model
         }
 
         return $clientData;
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
     }
 }
